@@ -1,4 +1,4 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/7580481c-594d-45d9-a633-32a648215a78/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/nexttailwindionicstarter",
-    "appService.deploySubpath": "."
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/7580481c-594d-45d9-a633-32a648215a78/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/haddleynextjsionicpwa"
 }

@@ -134,14 +134,14 @@ const AppShell = () => {
       <IonSplitPane contentId="main">
 
 
-      {/*--  the side menu  --*/}
-      <IonMenu contentId="main">
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Menu</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-      </IonMenu>
+        {/*--  the side menu  --*/}
+        <IonMenu contentId="main">
+          <IonHeader>
+            <IonToolbar>
+              <IonTitle>Menu</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+        </IonMenu>
 
 
         <IonPage id="main">
@@ -163,17 +163,9 @@ const AppShell = () => {
 
             <form className="ion-padding" ref={taskForm}>
 
-              <IonItem button={true} id="open-date-input">
-                <IonLabel>Date</IonLabel>
-                {/* Datetime in overlay */}
-                <IonButton id="open-modal" onClick={() => setShowModal(true)}>{formatDate(selectedDate)}</IonButton>
-                <IonModal isOpen={showModal}>
-                  <IonContent>
-                    <IonDatetime presentation="date"
-                      value={selectedDate}
-                      onIonChange={ev => { setSelectedDate(ev.detail.value); setShowModal(false) }}></IonDatetime>
-                  </IonContent>
-                </IonModal>
+              <IonItemDivider>Date</IonItemDivider>
+              <IonItem>
+                <IonDatetime value={selectedDate} onIonChange={ev => { setSelectedDate(ev.detail.value) }}></IonDatetime>
               </IonItem>
 
               <IonItemDivider>Submitted by</IonItemDivider>
