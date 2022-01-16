@@ -12,11 +12,6 @@
     "export": "next export"
   },
   "dependencies": {
-    "@capacitor/android": "^3.0.1",
-    "@capacitor/cli": "^3.0.1",
-    "@capacitor/core": "^3.0.1",
-    "@capacitor/ios": "^3.0.1",
-    "@capacitor/status-bar": "^1.0.1",
     "@ionic/react": "^5.5.2",
     "@ionic/react-router": "^5.5.2",
     "autoprefixer": "^10.2.6",

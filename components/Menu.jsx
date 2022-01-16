@@ -1,4 +1,3 @@
-import { StatusBar, Style } from '@capacitor/status-bar';
 import {
   IonContent,
   IonHeader,
