@@ -1,4 +1,4 @@
-import { IonApp, IonContent, IonRouterOutlet, IonSplitPane, IonPage, IonButton, IonButtons, IonDatetime, IonHeader, IonInput, IonItem, IonItemDivider, IonLabel, IonMenuButton, IonModal, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
+import { IonMenu, IonApp, IonContent, IonRouterOutlet, IonSplitPane, IonPage, IonButton, IonButtons, IonDatetime, IonHeader, IonInput, IonItem, IonItemDivider, IonLabel, IonMenuButton, IonModal, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
 
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './Menu';
@@ -24,7 +24,7 @@ const AppShell = () => {
   };
 
   const tzoffset = (new Date()).getTimezoneOffset() * 60000;
-  
+
   const getDateNowISOString = () => {
     return (new Date(Date.now() - tzoffset)).toISOString()
   }
@@ -41,7 +41,7 @@ const AppShell = () => {
   const taskForm = useRef(null);
 
 
-  const onSubmitClick = async() => {
+  const onSubmitClick = async () => {
 
     if (taskForm?.current?.reportValidity()) {
       console.log(selectedDate);
@@ -60,9 +60,9 @@ const AppShell = () => {
         attachedPhoto: attachedPhoto
       })
 
-      console.log("addCommendation result",result)
+      console.log("addCommendation result", result)
 
- ;
+        ;
 
       //reset state
       setSelectedDate(getDateNowISOString());
@@ -128,83 +128,89 @@ const AppShell = () => {
   }
 
 
-  
+
   return (
     <IonApp>
-        <IonSplitPane contentId="main">
-          <Menu />
+      <IonSplitPane contentId="main">
 
 
+      {/*--  the side menu  --*/}
+      <IonMenu contentId="main">
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Menu</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+      </IonMenu>
 
-          <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <IonTitle>Commendation</IonTitle>
-        </IonToolbar>
-      </IonHeader>
 
-      <IonContent fullscreen>
-        {/* 
+        <IonPage id="main">
+          <IonHeader>
+            <IonToolbar>
+              <IonButtons slot="start">
+                <IonMenuButton />
+              </IonButtons>
+              <IonTitle>Commendation</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+
+          <IonContent fullscreen>
+            {/* 
         https://ionicframework.com/docs/api/input
         https://ionicframework.com/docs/api/datetime
         https://www.smashingmagazine.com/2020/08/forms-validation-ionic-react/
          */}
 
-        <form className="ion-padding" ref={taskForm}>
+            <form className="ion-padding" ref={taskForm}>
 
-          <IonItem button={true} id="open-date-input">
-            <IonLabel>Date</IonLabel>
-            {/* Datetime in overlay */}
-            <IonButton id="open-modal" onClick={() => setShowModal(true)}>{formatDate(selectedDate)}</IonButton>
-            <IonModal isOpen={showModal}>
-              <IonContent>
-                <IonDatetime presentation="date"
-                value={selectedDate}
-                  onIonChange={ev => { setSelectedDate(ev.detail.value); setShowModal(false) }}></IonDatetime>
-              </IonContent>
-            </IonModal>
-          </IonItem>
+              <IonItem button={true} id="open-date-input">
+                <IonLabel>Date</IonLabel>
+                {/* Datetime in overlay */}
+                <IonButton id="open-modal" onClick={() => setShowModal(true)}>{formatDate(selectedDate)}</IonButton>
+                <IonModal isOpen={showModal}>
+                  <IonContent>
+                    <IonDatetime presentation="date"
+                      value={selectedDate}
+                      onIonChange={ev => { setSelectedDate(ev.detail.value); setShowModal(false) }}></IonDatetime>
+                  </IonContent>
+                </IonModal>
+              </IonItem>
 
-          <IonItemDivider>Submitted by</IonItemDivider>
-          <IonItem>
-            <IonInput required={true} value={submittedBy} placeholder="Submitted by" onIonChange={e => setSubmittedBy(e.detail.value)} ></IonInput>
-          </IonItem>
+              <IonItemDivider>Submitted by</IonItemDivider>
+              <IonItem>
+                <IonInput required={true} value={submittedBy} placeholder="Submitted by" onIonChange={e => setSubmittedBy(e.detail.value)} ></IonInput>
+              </IonItem>
 
-          <IonItemDivider>Name</IonItemDivider>
-          <IonItem>
-            <IonInput required={true} value={name} placeholder="Enter Input" onIonChange={e => setName(e.detail.value)} ></IonInput>
-          </IonItem>
+              <IonItemDivider>Name</IonItemDivider>
+              <IonItem>
+                <IonInput required={true} value={name} placeholder="Enter Input" onIonChange={e => setName(e.detail.value)} ></IonInput>
+              </IonItem>
 
-          <IonItemDivider>Commendation Comments</IonItemDivider>
-          <IonItem>
-            <IonTextarea required={true} placeholder="Commendation Comments" value={commendationComments} onIonChange={e => setCommendationComments(e.detail.value)}></IonTextarea>
-          </IonItem>
+              <IonItemDivider>Commendation Comments</IonItemDivider>
+              <IonItem>
+                <IonTextarea required={true} placeholder="Commendation Comments" value={commendationComments} onIonChange={e => setCommendationComments(e.detail.value)}></IonTextarea>
+              </IonItem>
 
-          <IonItemDivider>Attach File</IonItemDivider>
-          <IonItem>
-            <input type="file" id="fileInput" onChange={e => fileOnChange(e)}></input>
-          </IonItem>
+              <IonItemDivider>Attach File</IonItemDivider>
+              <IonItem>
+                <input type="file" id="fileInput" onChange={e => fileOnChange(e)}></input>
+              </IonItem>
 
-          <IonItemDivider>Take Photo</IonItemDivider>
-          <IonItem>
-            <input type="file" id="pictureInput" accept="image/*" capture="camera" onChange={e => fileOnPhoto(e)}></input>
-          </IonItem>
+              <IonItemDivider>Take Photo</IonItemDivider>
+              <IonItem>
+                <input type="file" id="pictureInput" accept="image/*" capture="camera" onChange={e => fileOnPhoto(e)}></input>
+              </IonItem>
 
-          <IonButton onClick={() => onSubmitClick()}
-            color="primary"
-            expand="block" >Submit</IonButton>
+              <IonButton onClick={() => onSubmitClick()}
+                color="primary"
+                expand="block" >Submit</IonButton>
 
-        </form>
+            </form>
 
-      </IonContent>
-    </IonPage>
+          </IonContent>
+        </IonPage>
 
-
-
-        </IonSplitPane>
+      </IonSplitPane>
     </IonApp>
   );
 };
