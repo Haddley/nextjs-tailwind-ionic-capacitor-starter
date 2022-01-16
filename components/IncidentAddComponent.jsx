@@ -1,4 +1,4 @@
-import { IonMenu, IonApp, IonContent, IonRouterOutlet, IonSplitPane, IonPage, IonButton, IonButtons, IonDatetime, IonHeader, IonInput, IonItem, IonItemDivider, IonLabel, IonMenuButton, IonModal, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
+import { IonToggle, IonMenu, IonApp, IonContent, IonRouterOutlet, IonSplitPane, IonPage, IonButton, IonButtons, IonDatetime, IonHeader, IonInput, IonItem, IonItemDivider, IonLabel, IonMenuButton, IonModal, IonTextarea, IonTitle, IonToolbar, IonRadio } from '@ionic/react';
 
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './Menu';
@@ -8,6 +8,8 @@ import Tabs from './pages/Tabs';
 import { useState, useRef } from 'react';
 
 import { format, parseISO } from 'date-fns';
+
+import {MapSection} from './Map'
 
 /*window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => {
   try {
@@ -37,6 +39,12 @@ const IncidentAddComponent = () => {
   const [attachedPhoto, setAttachedPhoto] = useState('');
 
   const [showModal, setShowModal] = useState(false);
+
+  // state
+  const [confidential, setConfidential] = useState(false)
+  const [reportedBy, setReportedBy] = useState(localStorage.getItem('name'));
+  const [briefDescription, setBriefDescription] = useState(localStorage.getItem(''));
+
 
   const taskForm = useRef(null);
 
@@ -128,14 +136,13 @@ const IncidentAddComponent = () => {
   }
 
 
-
   return (
     <IonApp>
       <IonSplitPane contentId="main">
 
 
         {/*--  the side menu  --*/}
-        <Menu/>
+        <Menu />
 
 
         <IonPage id="main">
@@ -157,25 +164,29 @@ const IncidentAddComponent = () => {
 
             <form className="ion-padding" ref={taskForm}>
 
-              <IonItemDivider>Date</IonItemDivider>
+              <h1>confidential {confidential.toString()}</h1>
+
+              <IonItemDivider>Confidential?</IonItemDivider>
               <IonItem>
-                <IonDatetime value={selectedDate} onIonChange={ev => { setSelectedDate(ev.detail.value) }}></IonDatetime>
+                <IonToggle value={confidential} onIonChange={() => setConfidential(!confidential)}></IonToggle>
               </IonItem>
 
-              <IonItemDivider>Submitted by</IonItemDivider>
+              <IonItemDivider>Reported By</IonItemDivider>
               <IonItem>
-                <IonInput required={true} value={submittedBy} placeholder="Submitted by" onIonChange={e => setSubmittedBy(e.detail.value)} ></IonInput>
+                <IonInput disabled={confidential} required={true} value={reportedBy} placeholder="Submitted by" onIonChange={e => setReportedBy(e.detail.value)} ></IonInput>
               </IonItem>
 
-              <IonItemDivider>Name</IonItemDivider>
+              <IonItemDivider>Brief Description</IonItemDivider>
               <IonItem>
-                <IonInput required={true} value={name} placeholder="Enter Input" onIonChange={e => setName(e.detail.value)} ></IonInput>
+                <IonTextarea required={true} placeholder="Brief Description" value={briefDescription} onIonChange={e => setBriefDescription(e.detail.value)}></IonTextarea>
               </IonItem>
 
-              <IonItemDivider>Commendation Comments</IonItemDivider>
+
+              <IonItemDivider>Location</IonItemDivider>
               <IonItem>
-                <IonTextarea required={true} placeholder="Commendation Comments" value={commendationComments} onIonChange={e => setCommendationComments(e.detail.value)}></IonTextarea>
+                <MapSection /> {/* include it here */}
               </IonItem>
+
 
               <IonItemDivider>Attach File</IonItemDivider>
               <IonItem>
