@@ -19,7 +19,7 @@ import CommendationListItem from './CommendationListItem'
   } catch {}
 });*/
 
-const CommedationsComponent = () => {
+const IncidentsComponent = () => {
 
 
   const [commendations, setCommendations] = useState([]);
@@ -101,4 +101,4 @@ const CommedationsComponent = () => {
   );
 };
 
-export default CommedationsComponent;
+export default IncidentsComponent;
