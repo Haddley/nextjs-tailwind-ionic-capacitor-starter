@@ -11,25 +11,8 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import { useEffect, useState } from 'react';
-import { cog, flash, list } from 'ionicons/icons';
+import { cog, flash, list,home } from 'ionicons/icons';
 
-const pages = [
-  {
-    title: 'Feed',
-    icon: flash,
-    url: '/tabs/feed',
-  },
-  {
-    title: 'Lists',
-    icon: list,
-    url: '/tabs/lists',
-  },
-  {
-    title: 'Settings',
-    icon: cog,
-    url: '/tabs/settings',
-  },
-];
 
 const Menu = () => {
   const [isDark, setIsDark] = useState(false);
@@ -52,6 +35,35 @@ const Menu = () => {
   useEffect(() => {
     setIsDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
   }, []);
+
+  const pages = [
+    {
+      title: 'Home',
+      icon: home,
+      url: '/',
+    },
+    {
+      title: 'Incidents',
+      icon: list,
+      url: '/incidents',
+    },
+    {
+      title: 'Improvement Opportunties',
+      icon: list,
+      url: '/improvements',
+    },
+    {
+      title: 'Commendations',
+      icon: list,
+      url: '/commendations',
+    },
+
+    {
+      title: 'Settings',
+      icon: cog,
+      url: '/settings',
+    },
+  ];
 
   return (
     <IonMenu side="start" contentId="main" onIonDidOpen={handleOpen} onIonDidClose={handleClose}>
