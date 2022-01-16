@@ -164,8 +164,6 @@ const IncidentAddComponent = () => {
 
             <form className="ion-padding" ref={taskForm}>
 
-              <h1>confidential {confidential.toString()}</h1>
-
               <IonItemDivider>Confidential?</IonItemDivider>
               <IonItem>
                 <IonToggle value={confidential} onIonChange={() => setConfidential(!confidential)}></IonToggle>
@@ -181,12 +179,10 @@ const IncidentAddComponent = () => {
                 <IonTextarea required={true} placeholder="Brief Description" value={briefDescription} onIonChange={e => setBriefDescription(e.detail.value)}></IonTextarea>
               </IonItem>
 
-
               <IonItemDivider>Location</IonItemDivider>
               <IonItem>
                 <MapSection /> {/* include it here */}
               </IonItem>
-
 
               <IonItemDivider>Attach File</IonItemDivider>
               <IonItem>
