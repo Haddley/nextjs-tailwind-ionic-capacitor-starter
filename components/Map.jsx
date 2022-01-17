@@ -24,7 +24,7 @@ export const LocationPin = ({ text }) => (
 )
 
 
-export const MapSection = () => (<div style={{ height: '100vh', width: '100%' }}>
+export const MapSection = () => (<div style={{ height: '50vh', width: '100%' }}>
     <GoogleMapReact
         bootstrapURLKeys={{ key: '' }}
         defaultCenter={location}

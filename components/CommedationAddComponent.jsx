@@ -30,7 +30,7 @@ const CommedationsComponent = () => {
   }
 
   const [selectedDate, setSelectedDate] = useState(getDateNowISOString()); //'2012-12-15T13:47:20.789'
-  const [submittedBy, setSubmittedBy] = useState('');
+  const [submittedBy, setSubmittedBy] = useState(localStorage.getItem('name'));
   const [name, setName] = useState('');
   const [commendationComments, setCommendationComments] = useState('');
   const [attachedFile, setAttachedFile] = useState('');
@@ -66,7 +66,7 @@ const CommedationsComponent = () => {
 
       //reset state
       setSelectedDate(getDateNowISOString());
-      setSubmittedBy('')
+      setSubmittedBy(localStorage.getItem('name'))
       setName('')
       setCommendationComments('');
       setAttachedFile('');
