@@ -57,11 +57,10 @@ const Menu = () => {
       icon: list,
       url: '/commendations',
     },
-
     {
-      title: 'Settings',
+      title: 'User Administration',
       icon: cog,
-      url: '/settings',
+      url: '/userAdministration',
     },
   ];
 
