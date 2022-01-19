@@ -26,7 +26,7 @@ function UserAdministrationComponent() {
 
                 <IonPage id="main">
                     <IonHeader>
-                        <IonToolbar color="warning">
+                        <IonToolbar color="medium">
                             <IonButtons slot="start">
                                 <IonMenuButton />
                             </IonButtons>

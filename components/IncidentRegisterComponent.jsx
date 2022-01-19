@@ -26,16 +26,16 @@ function IncidentRegister() {
                 </IonRow>
 
                 <IonRow>
-                    <IonCol size="1">ion-col size="1"</IonCol>
+                    <IonCol>ion-col </IonCol>
                     <IonCol>ion-col</IonCol>
                     <IonCol>ion-col</IonCol>
-                    <IonCol size="1">ion-col size="1"</IonCol>
+                    <IonCol >ion-col</IonCol>
                     <IonCol>ion-col</IonCol>
                     <IonCol>ion-col</IonCol>
-                    <IonCol size="1">ion-col size="1"</IonCol>
+                    <IonCol >ion-col </IonCol>
                     <IonCol>ion-col</IonCol>
                     <IonCol>ion-col</IonCol>
-                    <IonCol size="1">ion-col size="1"</IonCol>
+                    <IonCol >ion-col </IonCol>
                     <IonCol>ion-col</IonCol>
                     <IonCol>ion-col</IonCol>
                 </IonRow>

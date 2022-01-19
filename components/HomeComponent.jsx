@@ -141,7 +141,7 @@ const HomeComponent = () => {
 
         <IonPage id="main">
           <IonHeader>
-            <IonToolbar>
+            <IonToolbar color="light">
               <IonButtons slot="start">
                 <IonMenuButton />
               </IonButtons>
