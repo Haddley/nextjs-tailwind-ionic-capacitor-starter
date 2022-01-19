@@ -465,7 +465,7 @@ const IncidentAddComponent = () => {
 
               {(!confidential) ? (<><IonItemDivider>Reported By</IonItemDivider>
                 <IonItem>
-                  <IonInput disabled={confidential} required={true} value={reportedBy} placeholder="Submitted by" onIonChange={e => setReportedBy(e.detail.value)} ></IonInput>
+                  <IonInput disabled={confidential} required={true} value={reportedBy} placeholder="Reported By" onIonChange={e => setReportedBy(e.detail.value)} ></IonInput>
                 </IonItem></>) : ''}
 
 
@@ -1023,10 +1023,11 @@ const IncidentAddComponent = () => {
                 <IonToggle value={furtherInvestigationRequired} onIonChange={() => setFurtherInvestigationRequired(!confidential)}></IonToggle>
               </IonItem>
 
-              <IonItem>
+              {(furtherInvestigationRequired) ? (<IonItem>
                 <IonLabel>Assign To</IonLabel>
                 <IonInput value={assignTo} placeholder="Assign To" onIonChange={e => setAssignTo(e.detail.value)} ></IonInput>
-              </IonItem>
+              </IonItem>) : ''}
+
 
               <IonItem>
                 <IonTextarea required={true} placeholder="Additional Information" value={additionalInformation} onIonChange={e => setAdditionalInformation(e.detail.value)}></IonTextarea>

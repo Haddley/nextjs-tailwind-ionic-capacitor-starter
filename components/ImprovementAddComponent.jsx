@@ -1,4 +1,4 @@
-import { IonMenu, IonApp, IonContent, IonRouterOutlet, IonSplitPane, IonPage, IonButton, IonButtons, IonDatetime, IonHeader, IonInput, IonItem, IonItemDivider, IonLabel, IonMenuButton, IonModal, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
+import { IonSelect,IonSelectOption, IonToggle, IonMenu, IonApp, IonContent, IonRouterOutlet, IonSplitPane, IonPage, IonButton, IonButtons, IonDatetime, IonHeader, IonInput, IonItem, IonItemDivider, IonLabel, IonMenuButton, IonModal, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
 
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './Menu';
@@ -8,6 +8,7 @@ import Tabs from './pages/Tabs';
 import { useState, useRef } from 'react';
 
 import { format, parseISO } from 'date-fns';
+import { MapSection } from './Map'
 
 /*window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => {
   try {
@@ -36,7 +37,9 @@ const ImprovementAddComponent = () => {
   const [attachedFile, setAttachedFile] = useState('');
   const [attachedPhoto, setAttachedPhoto] = useState('');
 
-  const [showModal, setShowModal] = useState(false);
+  const [confidential,setConfidential]= useState('');
+  const [severity, setSeverity] = useState();
+  const [improvementComments,setImprovementComments]= useState();
 
   const taskForm = useRef(null);
 
@@ -71,6 +74,8 @@ const ImprovementAddComponent = () => {
       setCommendationComments('');
       setAttachedFile('');
       setAttachedPhoto('');
+
+      
 
       //reset form values
       taskForm?.current?.reset();
@@ -162,19 +167,37 @@ const ImprovementAddComponent = () => {
                 <IonDatetime value={selectedDate} onIonChange={ev => { setSelectedDate(ev.detail.value) }}></IonDatetime>
               </IonItem>
 
-              <IonItemDivider>Submitted by</IonItemDivider>
+              <IonItemDivider>Confidential?</IonItemDivider>
+              <IonItem>
+                <IonToggle value={confidential} onIonChange={() => setConfidential(!confidential)}></IonToggle>
+              </IonItem>
+
+              {(!confidential) ? (<><IonItemDivider>Submitted by</IonItemDivider>
               <IonItem>
                 <IonInput required={true} value={submittedBy} placeholder="Submitted by" onIonChange={e => setSubmittedBy(e.detail.value)} ></IonInput>
+              </IonItem></>) : ''}
+
+              <IonItemDivider>Location</IonItemDivider>
+              <IonItem>
+                <MapSection /> {/* include it here */}
               </IonItem>
 
-              <IonItemDivider>Name</IonItemDivider>
+              <IonItemDivider>Severity</IonItemDivider>
               <IonItem>
-                <IonInput required={true} value={name} placeholder="Enter Input" onIonChange={e => setName(e.detail.value)} ></IonInput>
+                <IonLabel>Severity</IonLabel>
+                <IonSelect value={severity} placeholder="Select One" onIonChange={e => setSeverity(e.detail.value)}>
+                  <IonSelectOption value="insignificant">Insignificant</IonSelectOption>
+                  <IonSelectOption value="minor">Minor</IonSelectOption>
+                  <IonSelectOption value="moderate">Moderate</IonSelectOption>
+                  <IonSelectOption value="major">Major</IonSelectOption>
+                  <IonSelectOption value="critical">Critical</IonSelectOption>
+
+                </IonSelect>
               </IonItem>
 
-              <IonItemDivider>Commendation Comments</IonItemDivider>
+              <IonItemDivider>Opportunity for Improvement Comments</IonItemDivider>
               <IonItem>
-                <IonTextarea required={true} placeholder="Commendation Comments" value={commendationComments} onIonChange={e => setCommendationComments(e.detail.value)}></IonTextarea>
+                <IonTextarea required={true} placeholder="Opportunity for Improvement Comments" value={improvementComments} onIonChange={e => setImprovementComments(e.detail.value)}></IonTextarea>
               </IonItem>
 
               <IonItemDivider>Attach File</IonItemDivider>
