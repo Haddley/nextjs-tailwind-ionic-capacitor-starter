@@ -61,7 +61,7 @@ function UserAdministrationComponent() {
                             </IonItem>
 
                             <IonItem>
-                            <IonLabel>Enable User</IonLabel>
+                                <IonLabel>Enable User</IonLabel>
                                 <IonToggle value={enableUser} onIonChange={(e) => setEnableUser(e.detail.value)}></IonToggle>
                             </IonItem>
 
@@ -70,8 +70,8 @@ function UserAdministrationComponent() {
                             </IonItem>
 
                             <IonButton onClick={() => onSubmitClick()}
-                color="primary"
-                expand="block" >Submit</IonButton>
+                                color="primary"
+                                expand="block" >Submit</IonButton>
 
                         </form>
 
